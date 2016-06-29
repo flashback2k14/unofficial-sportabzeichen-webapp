@@ -1,9 +1,44 @@
 <!doctype html>
-<html>
+<html ng-app="app">
   <head>
     <title>unofficial sportabzeichen webapp</title>
+    <script src="./bower_components/angular/angular.min.js"></script>
+    <link rel="stylesheet" href="./styles/app.css">
   </head>
   <body>
     
+    <div ng-controller="DataController as dc">
+
+      <select
+        ng-model="dc.category"
+        ng-options="c.kategorie for c in dc.categories">
+        <option value="">Select Category...</option>
+      </select>
+
+      <select
+        ng-model="dc.gender"
+        ng-options="g.geschlecht for g in dc.genders">
+        <option value="">Select Gender...</option>
+      </select>
+
+      <select
+        ng-model="dc.age"
+        ng-options="a.alt_von + '-' + a.alt_bis for a in dc.ages">
+        <option value="">Select Age...</option>
+      </select>
+
+      <button ng-click="dc.getData();">Get Data</button>
+
+      <p>{{ dc.status }}</p>
+
+      <div>
+        {{ dc.data | json }}
+      </div>
+
+    </div>
+
+    <script src="./js/app.js"></script>
+    <script src="./js/data.controller.js"></script>
+    <script src="./js/data.service.js"></script>
   </body>
 </html>
