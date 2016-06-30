@@ -25,7 +25,7 @@ gulp.task("_copy", function() {
   return gulp.src([
       "./app/bower_components/**/*.min.js",
       "./app/bower_components/**/*.min.js.map",
-      "./app/bower_components/**/*.min.js.gzip"
+      "./app/bower_components/**/*.min.css"
     ])
     .pipe(gulp.dest("dist/bower_components"));
 });

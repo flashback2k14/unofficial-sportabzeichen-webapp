@@ -1,18 +1,24 @@
-function DataController(DataService) {
+function DataController(DataService, $mdToast) {
+  // save context
   var ctrl = this;
-
+  // data binding categories
   ctrl.categories = [];
-  ctrl.category = {};
-  
+  ctrl.category = "";
+  // data binding genders
   ctrl.genders = [];
-  ctrl.gender = {};
-
+  ctrl.gender = "";
+  // data binding ages
   ctrl.ages = [];
-  ctrl.age = {};
-
-  ctrl.status = "";
+  ctrl.age = "";
+  // data binding leistungstabelle
   ctrl.data = [];
 
+  // show toast
+  ctrl.showToast = function(messge) {
+    $mdToast.showSimple(messge);
+  };
+
+  // request eckdaten
   function getEckdaten() {
     DataService.getCategories()
       .then(function(response) {
@@ -45,24 +51,26 @@ function DataController(DataService) {
       });
   }
 
+  // request data
   ctrl.getData = function() {
     if (!ctrl.category) {
       return;
     }
 
-    DataService.getAllFromCategory(ctrl.category.kategorie)
+    DataService.getAllFromCategory(ctrl.category)
       .then(function(response) {
         ctrl.data = [];
-        ctrl.status = response.status + " - " + response.message;
         ctrl.data = response.data.map(function(item) {
           return item;
         });
+        ctrl.showToast(response.status + " - " + response.message);
       })
       .catch(function(error) {
         console.dir(error);
       });
   };
 
+  // load eckdaten
   getEckdaten();
 }
 
