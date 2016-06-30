@@ -3,12 +3,14 @@
   <head>
     <title>unofficial sportabzeichen webapp</title>
     <script src="./bower_components/angular/angular.min.js"></script>
+    <!-- build:css style/app.min.css -->
     <link rel="stylesheet" href="./styles/app.css">
+    <!-- endbuild -->
   </head>
   <body>
-    
-    <div ng-controller="DataController as dc">
 
+    <div ng-controller="DataController as dc">
+      <!-- Auswahl der Kategorie -->
       <select
         ng-model="dc.category"
         ng-options="c.kategorie for c in dc.categories">
@@ -29,16 +31,24 @@
 
       <button ng-click="dc.getData();">Get Data</button>
 
-      <p>{{ dc.status }}</p>
+      <p>
+        {{ dc.status }}
+      </p>
 
-      <div>
+      <pre>
         {{ dc.data | json }}
-      </div>
+      </pre>
 
     </div>
 
+    <!-- build:js js/app.min.js -->
     <script src="./js/app.js"></script>
+    <!-- endbuild -->
+    <!-- build:js js/data.controller.min.js -->
     <script src="./js/data.controller.js"></script>
+    <!-- endbuild -->
+    <!-- build:js js/data.service.min.js -->
     <script src="./js/data.service.js"></script>
+    <!-- endbuild -->
   </body>
 </html>

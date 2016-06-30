@@ -3,7 +3,7 @@ function DataController(DataService) {
 
   ctrl.categories = [];
   ctrl.category = {};
-
+  
   ctrl.genders = [];
   ctrl.gender = {};
 
