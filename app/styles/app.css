@@ -2,6 +2,7 @@
   min-width: 200px;
   width: 250px;
   max-width: 300px;
+  margin-left: 10px;
   margin-right: 20px;
 }
 
@@ -9,6 +10,10 @@
   margin-left: 10px;
 }
 
-pre {
-  background: lightblue;
+.add-top-margin-20 {
+  margin-top: 20px;
+}
+
+.no-items {
+  height: 150px;
 }

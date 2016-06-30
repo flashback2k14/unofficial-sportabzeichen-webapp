@@ -1,6 +1,6 @@
 {
   "name": "unofficial-sportabzeichen-webapp",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "private": true,
   "devDependencies": {
     "browser-sync": "^2.13.0",

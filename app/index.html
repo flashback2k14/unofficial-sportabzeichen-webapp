@@ -20,72 +20,119 @@
     </md-toolbar>
 
     <!-- Content Area -->
-    <div flex layout="row">
+    <div layout="row" flex>
       <!-- Content -->
-      <md-content id="content" flex>
-      
+      <md-content id="content" flex>   
         <!-- ToDo: Extract to Directive -->
         <div 
-          class="md-padding" 
+          class="md-padding" flex
           ng-controller="DataController as dc">
-          <!-- Auswahl der Kategorie -->
-          <md-input-container>
-            <label>Auswahl der Kategorie</label>
-            <md-select 
-              class="select-custom-width"
-              ng-model="dc.category">
-              <md-option 
-                ng-repeat="c in dc.categories" 
-                value="{{ c.kategorie }}">
-                  {{ c.kategorie }}
-              </md-option>
-            </md-select>
-          </md-input-container>
 
-          <!-- Auswahl des Geschlechts -->
-          <md-input-container>
-            <label>Auswahl des Geschlechts</label>
-            <md-select 
-              class="select-custom-width"
-              ng-model="dc.gender">
-              <md-option 
-                ng-repeat="g in dc.genders" 
-                value="{{ g.geschlecht }}">
-                  {{ g.geschlecht }}
-              </md-option>
-            </md-select>
-          </md-input-container>
+          <!-- Top -->
+          <div 
+            class="md-whiteframe-z4 add-top-margin-20"
+            layout="row"
+            layout-align="center center">
+            <!-- Auswahl der Kategorie -->
+            <md-input-container>
+              <label>Auswahl der Kategorie</label>
+              <md-select 
+                class="select-custom-width"
+                ng-model="dc.category">
+                <md-option 
+                  ng-repeat="c in dc.categories" 
+                  value="{{ c.kategorie }}">
+                    {{ c.kategorie }}
+                </md-option>
+              </md-select>
+            </md-input-container>
 
-          <!-- Auswahl des Alters -->
-          <md-input-container>
-            <label>Auswahl des Alters</label>
-            <md-select 
-              class="select-custom-width"
-              ng-model="dc.age">
-              <md-option 
-                ng-repeat="a in dc.ages" 
-                value="{{ a.alt_von + '-' + a.alt_bis }}">
-                  {{ a.alt_von + '-' + a.alt_bis }}
-              </md-option>
-            </md-select>
-          </md-input-container>
+            <!-- Auswahl des Geschlechts -->
+            <md-input-container>
+              <label>Auswahl des Geschlechts</label>
+              <md-select 
+                class="select-custom-width"
+                ng-model="dc.gender">
+                <md-option 
+                  ng-repeat="g in dc.genders" 
+                  value="{{ g.geschlecht }}">
+                    {{ g.geschlecht }}
+                </md-option>
+              </md-select>
+            </md-input-container>
 
-          <!-- Request senden -->
-          <md-button        
-            class="md-fab"
-            aria-label="get data"
-            ng-click="dc.getData();">
-            <md-icon 
-              md-font-icon="send" 
-              aria="send">
-                send
-            </md-icon>
-          </md-button>
+            <!-- Auswahl des Alters -->
+            <md-input-container>
+              <label>Auswahl des Alters</label>
+              <md-select 
+                class="select-custom-width"
+                ng-model="dc.age">
+                <md-option 
+                  ng-repeat="a in dc.ages" 
+                  value="{{ a.alt_von + '-' + a.alt_bis }}">
+                    {{ a.alt_von + '-' + a.alt_bis }}
+                </md-option>
+              </md-select>
+            </md-input-container>
 
-          <pre>
-            {{ dc.data | json }}
-          </pre>
+            <!-- Request senden -->
+            <md-button        
+              class="md-fab"
+              aria-label="get data"
+              ng-click="dc.getData();">
+              <md-icon 
+                md-font-icon="send" 
+                aria="send">
+                  send
+              </md-icon>
+            </md-button>
+          </div>
 
+          <!-- Middle -->
+          <div 
+            class="md-whiteframe-z4 add-top-margin-20"
+            layout="column"
+            flex-gt-sm="40" flex>
+            <!-- Data Header Area -->
+            <md-toolbar
+              class="md-whiteframe-z4"
+              layout="row" 
+              layout-align="center center">
+              <div>
+                <h1 class="md-headline">
+                  Leistungstabelle
+                </h1>
+              </div>
+            </md-toolbar>
+
+            <!-- Data Content Area -->
+            <md-content class="add-top-margin-20">
+              <!-- no items -->
+              <div 
+                class="no-items"
+                layout="row" 
+                layout-align="center center"
+                ng-show="dc.data.length === 0">
+                Keine Daten vorhanden!
+              </div>
+              <!-- Data List-->
+              <md-list flex>
+                <md-list-item 
+                  class="md-3-line"
+                  ng-repeat="item in dc.data">
+                  <div class="md-list-item-text">
+                    <h4>{{ item.uebung }} - {{ item.zusatz }}</h4>
+                    <h4>Alter: {{ item.alt_von }} - {{ item.alt_bis }}</h4>
+                    <h4>Bronze: {{ item.abzeichen_bronze }} ; Silber: {{ item.abzeichen_silber }} ; Gold: {{ item.abzeichen_gold }}</h4>
+                    <h4>Einheit: {{ item.einheit }}</h4>
+                    <md-checkbox class="md-secondary" aria-label="fav"></md-checkbox>
+                  </div>
+                  <md-divider></md-divider>
+                </md-list-item>
+              </md-list>
+            </md-content>  
+          </div>
+          
            <!-- Notification Toast -->
           <div layout-fill id="toast-container">
             <md-content></md-content>

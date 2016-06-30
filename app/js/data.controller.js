@@ -57,7 +57,7 @@ function DataController(DataService, $mdToast) {
       return;
     }
 
-    DataService.getAllFromCategory(ctrl.category)
+    DataService.getData(ctrl.category, ctrl.gender, ctrl.age)
       .then(function(response) {
         ctrl.data = [];
         ctrl.data = response.data.map(function(item) {
