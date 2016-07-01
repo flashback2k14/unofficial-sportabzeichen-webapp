@@ -21,32 +21,19 @@ function DataController(DataService, $mdToast) {
   };
 
   // request eckdaten
-  function getEckdaten() {
-    DataService.getCategories()
-      .then(function(response) {
-        ctrl.categories = response.data.map(function(item) {
-          return item;
-        });
-      })
-      .catch(function(error) {
-        console.dir(error);
-      });
-
-    DataService.getGenders()
-      .then(function(response) {
-        ctrl.genders = response.data.map(function(item) {
-          return item;
-        });
-      })
-      .catch(function(error) {
-        console.dir(error);
-      });
-
-    DataService.getAges()
-      .then(function(response) {
-        ctrl.ages = response.data.map(function(item) {
-          return item;
-        });
+  function _getEckdaten() {
+    // promise holder
+    var promArr = [];
+    // add promises
+    promArr.push(DataService.getCategories());
+    promArr.push(DataService.getGenders());
+    promArr.push(DataService.getAges());
+    // add data to data binding
+    Promise.all(promArr)
+      .then(function(data) {
+        ctrl.categories = data[0].data;
+        ctrl.genders = data[1].data;
+        ctrl.ages = data[2].data;
       })
       .catch(function(error) {
         console.dir(error);
@@ -109,7 +96,7 @@ function DataController(DataService, $mdToast) {
   };
 
   // load eckdaten
-  getEckdaten();
+  _getEckdaten();
 }
 
 angular
