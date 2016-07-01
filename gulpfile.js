@@ -4,6 +4,7 @@ var browserSync = require("browser-sync").create();
 var cssNano = require("gulp-cssnano");
 var del = require("del");
 var gIf = require("gulp-if");
+var ghPages = require("gulp-gh-pages");
 var htmlMin = require("gulp-htmlmin");
 var useRef = require("gulp-useref");
 var uglify = require("gulp-uglify");
@@ -32,7 +33,7 @@ gulp.task("_copy", function() {
 
 // clean build folder
 gulp.task("clean", function() {
-  return del.sync("dist");
+  return del.sync(["dist", ".publish"]);
 });
 
 // minify HTML, CSS and JS
@@ -49,6 +50,12 @@ gulp.task("minify", ["clean", "_copy"], function() {
       removeRedundantAttributes: true
     })))
     .pipe(gulp.dest("dist"));
+});
+
+// deploy to gh pages
+gulp.task("deploy", ["minify"], function() {
+  return gulp.src("./dist/**/*")
+    .pipe(ghPages());
 });
 
 // serve production build
