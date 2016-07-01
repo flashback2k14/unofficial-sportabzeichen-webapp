@@ -12,6 +12,8 @@ function DataController(DataService, $mdToast) {
   ctrl.age = "";
   // data binding leistungstabelle
   ctrl.data = [];
+  // data binding favoritenliste
+  ctrl.favList = [];
 
   // show toast
   ctrl.showToast = function(messge) {
@@ -68,6 +70,42 @@ function DataController(DataService, $mdToast) {
       .catch(function(error) {
         console.dir(error);
       });
+  };
+
+  // clear all elements
+  ctrl.clearAll = function(withoutFav) {
+    ctrl.category = "";
+    ctrl.gender = "";
+    ctrl.age = "";
+    ctrl.data = [];
+    if (!withoutFav) {
+      ctrl.favList = [];
+    }
+  };
+
+  // toggle item to / from fav list
+  ctrl.toggleItem = function(selected, item) {
+    // add to fav list
+    if (selected) {
+      ctrl.favList.unshift(item);
+    } else {
+      // get index from item
+      var index = ctrl.favList.indexOf(item);
+      // remove from fav list
+      if (index !== -1) {
+        ctrl.favList.splice(index, 1);
+      }
+    }
+  };
+
+  // remove item from fav list
+  ctrl.removeItem = function(item) {
+    // get index from item
+    var index = ctrl.favList.indexOf(item);
+    // remove from fav list
+    if (index !== -1) {
+      ctrl.favList.splice(index, 1);
+    }
   };
 
   // load eckdaten

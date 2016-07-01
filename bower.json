@@ -1,7 +1,7 @@
 {
   "name": "unofficial-sportabzeichen-webapp",
   "description": "data viewer for unofficial sportabzeichen api",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "homepage": "https://github.com/flashback2k14/unofficial-sportabzeichen-webapp",
   "authors": [
     "flashback2k14 <feedbackcalcest@gmail.com>"

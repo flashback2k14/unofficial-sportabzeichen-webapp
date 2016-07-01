@@ -2,12 +2,19 @@
   min-width: 200px;
   width: 250px;
   max-width: 300px;
-  margin-left: 10px;
-  margin-right: 20px;
+  margin: 20px 0 20px 10px;
+}
+
+.clear-button {
+  margin: 5px -5px 0 -10px;
 }
 
 .add-left-margin-10 {
   margin-left: 10px;
+}
+
+.add-left-margin-40 {
+  margin-left: 40px;
 }
 
 .add-top-margin-20 {
@@ -16,4 +23,8 @@
 
 .no-items {
   height: 150px;
+}
+
+md-option:focus {
+  color: black;
 }
