@@ -70,29 +70,28 @@ function DataController(DataService, $mdToast) {
     }
   };
 
-  // toggle item to / from fav list
-  ctrl.toggleItem = function(selected, item) {
-    // add to fav list
-    if (selected) {
-      ctrl.favList.unshift(item);
-    } else {
-      // get index from item
-      var index = ctrl.favList.indexOf(item);
-      // remove from fav list
-      if (index !== -1) {
-        ctrl.favList.splice(index, 1);
-      }
-    }
-  };
-
-  // remove item from fav list
-  ctrl.removeItem = function(item) {
+  function _removeItem(item) {
     // get index from item
     var index = ctrl.favList.indexOf(item);
     // remove from fav list
     if (index !== -1) {
       ctrl.favList.splice(index, 1);
     }
+  }
+
+  // toggle item to / from fav list
+  ctrl.toggleItem = function(selected, item) {
+    // add to fav list
+    if (selected) {
+      ctrl.favList.unshift(item);
+    } else {
+      _removeItem(item);
+    }
+  };
+
+  // remove item from fav list
+  ctrl.removeItem = function(item) {
+    _removeItem(item);
   };
 
   // load eckdaten
