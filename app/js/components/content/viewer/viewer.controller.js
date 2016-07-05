@@ -1,6 +1,8 @@
 function ViewerController() {
   // save context
   var ctrl = this;
+
+  ctrl.removed = false;
   
   // toggle item to / from fav list
   ctrl.toggleItem = function(selected, item) {
@@ -24,6 +26,10 @@ function ViewerController() {
     // remove from fav list
     if (index !== -1) {
       ctrl.favlist.splice(index, 1);
+
+      if (ctrl.selected) {
+        ctrl.selected = false;
+      }
     }
   };
 }
