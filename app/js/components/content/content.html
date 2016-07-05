@@ -1,0 +1,287 @@
+<div layout="row" flex>
+  <!-- Content -->
+  <md-content id="content" flex>   
+
+    <div class="md-padding" flex>
+
+      <!-- Top -->
+      <div 
+        class="md-whiteframe-z4 add-top-margin-20"
+        layout="row"
+        layout-align="center center">
+
+        <!-- Begin: Kategorie -->
+        <!-- Auswahl -->
+        <md-input-container
+          class="select-custom-width">
+          <label>Auswahl der Kategorie</label>
+          <md-select 
+            ng-model="$ctrl.category">
+            <md-option 
+              ng-repeat="c in $ctrl.categories" 
+              value="{{ c.kategorie }}">
+                {{ c.kategorie | uppercase }}
+            </md-option>
+          </md-select>
+        </md-input-container>
+
+        <!-- Button -->
+        <md-button
+          class="md-icon-button"
+          aria-label="clear category"
+          ng-click="$ctrl.category = '';"> 
+          <md-icon
+            class="clear-button"
+            md-font-icon="clear" 
+            aria="clear">
+            clear
+          </md-icon>
+        </md-button>
+        <!-- End: Kategorie -->
+
+        <!-- Begin: Geschlecht -->
+        <!-- Auswahl -->
+        <md-input-container
+          class="select-custom-width">
+          <label>Auswahl des Geschlechts</label>
+          <md-select 
+            ng-model="$ctrl.gender">
+            <md-option 
+              ng-repeat="g in $ctrl.genders" 
+              value="{{ g.geschlecht }}">
+                {{ g.geschlecht | uppercase }}
+            </md-option>
+          </md-select>
+        </md-input-container>
+
+        <!-- Button -->
+        <md-button
+          class="md-icon-button"
+          aria-label="clear gender"
+          ng-click="$ctrl.gender = '';"> 
+          <md-icon
+            class="clear-button"
+            md-font-icon="clear" 
+            aria="clear">
+            clear
+          </md-icon>
+        </md-button>
+        <!-- End: Geschlecht -->
+
+        <!-- Begin: Alter -->
+        <!-- Auswahl -->
+        <md-input-container
+          class="select-custom-width">
+          <label>Auswahl des Alters</label>
+          <md-select 
+            ng-model="$ctrl.age">
+            <md-option 
+              ng-repeat="a in $ctrl.ages" 
+              value="{{ a.alt_von + '-' + a.alt_bis }}">
+                {{ a.alt_von + ' - ' + a.alt_bis }}
+            </md-option>
+          </md-select>
+        </md-input-container>
+
+        <!-- Button -->
+        <md-button
+          class="md-icon-button"
+          aria-label="clear age"
+          ng-click="$ctrl.age = '';"> 
+          <md-icon
+            class="clear-button"
+            md-font-icon="clear" 
+            aria="clear">
+            clear
+          </md-icon>
+        </md-button>
+        <!-- End: Alter -->
+
+
+        <!-- Request senden -->
+        <md-button        
+          class="md-raised md-primary"
+          aria-label="get data"
+          ng-click="$ctrl.getData();">
+          Senden          
+        </md-button>
+
+        <!-- Daten löschen -->
+        <md-button        
+          class="md-raised md-accent"
+          aria-label="get data"
+          ng-click="$ctrl.clearAll(withoutFav);">
+          Löschen         
+        </md-button>
+
+        <!-- Daten löschen ohne Favoriten -->
+        <md-checkbox 
+          class="md-secondary add-top-margin-20 add-left-margin-10" 
+          aria-label="without fav"
+          ng-model="withoutFav">
+          Löschen ohne Favoriten
+        </md-checkbox>
+
+      </div>
+
+      <!-- Middle -->
+      <div
+        class="add-top-margin-20"
+        layout="row"
+        layout-align="space-between">
+
+        <!-- Left Panel -->
+        <div 
+          class="md-whiteframe-z4 add-top-margin-20"
+          layout="column"
+          flex-gt-sm="45" flex>
+
+          <!-- Data Header Area -->
+          <md-toolbar
+            class="md-whiteframe-z4"
+            layout="row" 
+            layout-align="center center">
+            <div>
+              <h1 class="md-headline">
+                Leistungstabelle
+              </h1>
+            </div>
+          </md-toolbar>
+
+          <!-- Data Content Area -->
+          <md-content 
+            class="add-top-margin-20">
+
+            <!-- no items -->
+            <div 
+              class="no-items"
+              layout="row" 
+              layout-align="center center"
+              ng-show="$ctrl.data.length === 0">
+              Keine Daten vorhanden!
+            </div>
+
+            <!-- Data List-->
+            <md-list flex>
+              <md-list-item 
+                class="md-3-line" 
+                noright
+                aria-label="data list item"
+                ng-click="selected = !selected; $ctrl.toggleItem(selected, item);"
+                ng-repeat="item in $ctrl.data">
+                <div class="md-list-item-text">
+                  <h4 
+                    aria-label="uebung and zusatz">
+                      {{ item.uebung }} - {{ item.zusatz }}
+                  </h4>
+                  <h4 
+                    aria-label="alter">
+                      Alter: {{ item.alt_von }} - {{ item.alt_bis }}
+                  </h4>
+                  <h4 
+                    aria-label="abzeichen">
+                      Bronze: {{ item.abzeichen_bronze }} ; Silber: {{ item.abzeichen_silber }} ; Gold: {{ item.abzeichen_gold }}
+                  </h4>
+                  <h4 
+                    aria-label="einheit">
+                      Einheit: {{ item.einheit }}
+                  </h4>
+                  <md-checkbox 
+                    class="md-secondary" 
+                    aria-label="add To FavList"
+                    ng-model="selected"
+                    ng-click="selected = !selected; $ctrl.toggleItem(selected, item);">
+                  </md-checkbox>
+                </div>
+                <md-divider ng-if="!$last"></md-divider>
+              </md-list-item>
+            </md-list>
+          </md-content>  
+        </div>
+
+        <!-- Right Panel -->
+        <div
+          class="md-whiteframe-z4 add-top-margin-20"
+          layout="column"
+          flex-gt-sm="45" flex>
+
+          <!-- Data Header Area -->
+          <md-toolbar
+            class="md-whiteframe-z4"
+            layout="row" 
+            layout-align="center center">
+            <div>
+              <h1 class="md-headline">
+                Favoriten
+              </h1>
+            </div>
+          </md-toolbar>
+
+          <!-- Data Content Area -->
+          <md-content 
+            class="add-top-margin-20">
+
+            <!-- no items -->
+            <div 
+              class="no-items"
+              layout="row" 
+              layout-align="center center"
+              ng-show="$ctrl.favList.length === 0">
+              Keine Daten vorhanden!
+            </div>
+
+            <!-- Data List-->
+            <md-list flex>
+              <md-list-item 
+                class="md-3-line" 
+                noright
+                aria-label="fav list item"
+                ng-click="$ctrl.removeItem(item);"
+                ng-repeat="item in $ctrl.favList">
+                <div class="md-list-item-text">
+                  <h4
+                    aria-label="kategorie">
+                      {{ item.kategorie | uppercase }}
+                  </h4>
+                  <h4 
+                    aria-label="uebung and zusatz">
+                      {{ item.uebung }} - {{ item.zusatz }}
+                  </h4>
+                  <h4 
+                    aria-label="alter">
+                      Alter: {{ item.alt_von }} - {{ item.alt_bis }}
+                  </h4>
+                  <h4 
+                    aria-label="abzeichen">
+                      Bronze: {{ item.abzeichen_bronze }} ; Silber: {{ item.abzeichen_silber }} ; Gold: {{ item.abzeichen_gold }}
+                  </h4>
+                  <h4 
+                    aria-label="einheit">
+                      Einheit: {{ item.einheit }}
+                  </h4>
+                  <md-button 
+                    class="md-secondary" 
+                    aria-label="remove from FavList"
+                    ng-click="$ctrl.removeItem(item);">
+                    <md-icon
+                      aria-label="remove from FavList">
+                      clear
+                    </md-icon>
+                  </md-button>
+                </div>
+                <md-divider ng-if="!$last"></md-divider>
+              </md-list-item>
+            </md-list>
+          </md-content> 
+        </div>
+        
+      </div>
+      
+        <!-- Notification Toast -->
+      <div layout-fill id="toast-container">
+        <md-content></md-content>
+      </div>
+
+    </div>
+  </md-content>
+</div>

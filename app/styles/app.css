@@ -1,3 +1,11 @@
+body {
+  height: 100%;
+}
+
+md-option:focus {
+  color: black;
+}
+
 .select-custom-width {
   min-width: 200px;
   width: 250px;
@@ -23,8 +31,4 @@
 
 .no-items {
   height: 150px;
-}
-
-md-option:focus {
-  color: black;
 }
