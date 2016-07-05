@@ -1,0 +1,151 @@
+<div
+  class="add-top-margin-20"
+  layout="row"
+  layout-align="space-between">
+
+  <!-- Left Panel -->
+  <div 
+    class="md-whiteframe-z4 add-top-margin-20"
+    layout="column"
+    flex-gt-sm="45" flex>
+
+    <!-- Data Header Area -->
+    <md-toolbar
+      class="md-whiteframe-z4"
+      layout="row" 
+      layout-align="center center">
+      <div>
+        <h1 class="md-headline">
+          Leistungstabelle
+        </h1>
+      </div>
+    </md-toolbar>
+
+    <!-- Data Content Area -->
+    <md-content 
+      class="add-top-margin-20">
+
+      <!-- no items -->
+      <div 
+        class="no-items"
+        layout="row" 
+        layout-align="center center"
+        ng-show="$ctrl.data.length === 0">
+        Keine Daten vorhanden!
+      </div>
+
+      <!-- Data List-->
+      <md-list flex>
+        <md-list-item 
+          class="md-3-line" 
+          noright
+          aria-label="data list item"
+          ng-click="selected = !selected; $ctrl.toggleItem(selected, item);"
+          ng-repeat="item in $ctrl.data">
+          <div class="md-list-item-text">
+            <h4 
+              aria-label="uebung and zusatz">
+                {{ item.uebung }} - {{ item.zusatz }}
+            </h4>
+            <h4 
+              aria-label="alter">
+                Alter: {{ item.alt_von }} - {{ item.alt_bis }}
+            </h4>
+            <h4 
+              aria-label="abzeichen">
+                Bronze: {{ item.abzeichen_bronze }} ; Silber: {{ item.abzeichen_silber }} ; Gold: {{ item.abzeichen_gold }}
+            </h4>
+            <h4 
+              aria-label="einheit">
+                Einheit: {{ item.einheit }}
+            </h4>
+            <md-checkbox 
+              class="md-secondary" 
+              aria-label="add To favlist"
+              ng-model="selected"
+              ng-click="selected = !selected; $ctrl.toggleItem(selected, item);">
+            </md-checkbox>
+          </div>
+          <md-divider ng-if="!$last"></md-divider>
+        </md-list-item>
+      </md-list>
+    </md-content>  
+  </div>
+
+  <!-- Right Panel -->
+  <div
+    class="md-whiteframe-z4 add-top-margin-20"
+    layout="column"
+    flex-gt-sm="45" flex>
+
+    <!-- Data Header Area -->
+    <md-toolbar
+      class="md-whiteframe-z4"
+      layout="row" 
+      layout-align="center center">
+      <div>
+        <h1 class="md-headline">
+          Favoriten
+        </h1>
+      </div>
+    </md-toolbar>
+
+    <!-- Data Content Area -->
+    <md-content 
+      class="add-top-margin-20">
+
+      <!-- no items -->
+      <div 
+        class="no-items"
+        layout="row" 
+        layout-align="center center"
+        ng-show="$ctrl.favlist.length === 0">
+        Keine Daten vorhanden!
+      </div>
+
+      <!-- Data List-->
+      <md-list flex>
+        <md-list-item 
+          class="md-3-line" 
+          noright
+          aria-label="fav list item"
+          ng-click="$ctrl.removeItem(item);"
+          ng-repeat="item in $ctrl.favlist">
+          <div class="md-list-item-text">
+            <h4
+              aria-label="kategorie">
+                {{ item.kategorie | uppercase }}
+            </h4>
+            <h4 
+              aria-label="uebung and zusatz">
+                {{ item.uebung }} - {{ item.zusatz }}
+            </h4>
+            <h4 
+              aria-label="alter">
+                Alter: {{ item.alt_von }} - {{ item.alt_bis }}
+            </h4>
+            <h4 
+              aria-label="abzeichen">
+                Bronze: {{ item.abzeichen_bronze }} ; Silber: {{ item.abzeichen_silber }} ; Gold: {{ item.abzeichen_gold }}
+            </h4>
+            <h4 
+              aria-label="einheit">
+                Einheit: {{ item.einheit }}
+            </h4>
+            <md-button 
+              class="md-secondary" 
+              aria-label="remove from favlist"
+              ng-click="$ctrl.removeItem(item);">
+              <md-icon
+                aria-label="remove from favlist">
+                clear
+              </md-icon>
+            </md-button>
+          </div>
+          <md-divider ng-if="!$last"></md-divider>
+        </md-list-item>
+      </md-list>
+    </md-content> 
+  </div>
+  
+</div>

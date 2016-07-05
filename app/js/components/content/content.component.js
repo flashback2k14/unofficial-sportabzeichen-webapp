@@ -2,9 +2,9 @@ var ContentComponent = {
   templateUrl: "js/components/content/content.html",
   controller: "ContentController",
   bindings: {
-    categories: "=",
-    genders: "=",
-    ages: "="
+    categories: "<",
+    genders: "<",
+    ages: "<"
   }
 };
 
