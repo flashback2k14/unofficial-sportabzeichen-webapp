@@ -1,7 +1,12 @@
 <!-- Header Area -->
 <md-toolbar 
   class="md-whiteframe-z4">
-  <h1 class="md-headline add-left-margin-20">
+  <h1 show-xs hide-gt-xs 
+      class="md-title add-left-margin-20">
+    {{ $ctrl.title }}
+  </h1>
+  <h1 hide-xs show-gt-xs 
+      class="md-headline add-left-margin-20">
     {{ $ctrl.title }}
   </h1>
 </md-toolbar>

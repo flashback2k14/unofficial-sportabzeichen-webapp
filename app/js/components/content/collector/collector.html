@@ -1,121 +1,141 @@
-<div layout="row" layout-align="center center"
+<div layout="row" layout-md="column" 
+     layout-sm="column" layout-xs="column"
+     layout-align="center center"
      class="md-whiteframe-z4 add-top-margin-20">
 
   <!-- Pickers -->
-  <div layout="row" layout-align="center center">
-    <!-- Begin: Kategorie -->
-    <!-- Auswahl -->
-    <md-input-container
-      class="select-custom-width">
-      <label>Auswahl der Kategorie</label>
-      <md-select 
-        ng-model="$ctrl.category">
-        <md-option 
-          ng-repeat="c in $ctrl.categories" 
-          value="{{ c.kategorie }}">
-            {{ c.kategorie | uppercase }}
-        </md-option>
-      </md-select>
-    </md-input-container>
+  <div layout="row" layout-md="row" 
+       layout-sm="column" layout-xs="column"
+       layout-align="start center">
 
-    <!-- Button -->
-    <md-button
-      class="md-icon-button"
-      aria-label="clear category"
-      ng-click="$ctrl.category = '';"> 
-      <md-icon
-        class="clear-button"
-        md-font-icon="clear" 
-        aria="clear">
-        clear
-      </md-icon>
-    </md-button>
+    <!-- Begin: Kategorie -->
+    <div layout="row" layout-align="center center">
+      <!-- Auswahl -->
+      <md-input-container
+        class="select-custom-width">
+        <label>Auswahl der Kategorie</label>
+        <md-select 
+          ng-model="$ctrl.category">
+          <md-option 
+            ng-repeat="c in $ctrl.categories" 
+            value="{{ c.kategorie }}">
+              {{ c.kategorie | uppercase }}
+          </md-option>
+        </md-select>
+      </md-input-container>
+
+      <!-- Button -->
+      <md-button
+        class="md-icon-button"
+        aria-label="clear category"
+        ng-click="$ctrl.category = '';"> 
+        <md-icon
+          class="clear-button"
+          md-font-icon="clear" 
+          aria="clear">
+          clear
+        </md-icon>
+      </md-button>
+    </div>
     <!-- End: Kategorie -->
 
     <!-- Begin: Geschlecht -->
-    <!-- Auswahl -->
-    <md-input-container
-      class="select-custom-width">
-      <label>Auswahl des Geschlechts</label>
-      <md-select 
-        ng-model="$ctrl.gender">
-        <md-option 
-          ng-repeat="g in $ctrl.genders" 
-          value="{{ g.geschlecht }}">
-            {{ g.geschlecht | uppercase }}
-        </md-option>
-      </md-select>
-    </md-input-container>
+    <div layout="row" layout-align="center center">
+      <!-- Auswahl -->
+      <md-input-container
+        class="select-custom-width">
+        <label>Auswahl des Geschlechts</label>
+        <md-select 
+          ng-model="$ctrl.gender">
+          <md-option 
+            ng-repeat="g in $ctrl.genders" 
+            value="{{ g.geschlecht }}">
+              {{ g.geschlecht | uppercase }}
+          </md-option>
+        </md-select>
+      </md-input-container>
 
-    <!-- Button -->
-    <md-button
-      class="md-icon-button"
-      aria-label="clear gender"
-      ng-click="$ctrl.gender = '';"> 
-      <md-icon
-        class="clear-button"
-        md-font-icon="clear" 
-        aria="clear">
-        clear
-      </md-icon>
-    </md-button>
+      <!-- Button -->
+      <md-button
+        class="md-icon-button"
+        aria-label="clear gender"
+        ng-click="$ctrl.gender = '';"> 
+        <md-icon
+          class="clear-button"
+          md-font-icon="clear" 
+          aria="clear">
+          clear
+        </md-icon>
+      </md-button>
+    </div>
     <!-- End: Geschlecht -->
 
     <!-- Begin: Alter -->
-    <!-- Auswahl -->
-    <md-input-container
-      class="select-custom-width">
-      <label>Auswahl des Alters</label>
-      <md-select 
-        ng-model="$ctrl.age">
-        <md-option 
-          ng-repeat="a in $ctrl.ages" 
-          value="{{ a.alt_von + '-' + a.alt_bis }}">
-            {{ a.alt_von + ' - ' + a.alt_bis }}
-        </md-option>
-      </md-select>
-    </md-input-container>
+    <div layout="row" layout-align="center center">
+      <!-- Auswahl -->
+      <md-input-container
+        class="select-custom-width">
+        <label>Auswahl des Alters</label>
+        <md-select 
+          ng-model="$ctrl.age">
+          <md-option 
+            ng-repeat="a in $ctrl.ages" 
+            value="{{ a.alt_von + '-' + a.alt_bis }}">
+              {{ a.alt_von + ' - ' + a.alt_bis }}
+          </md-option>
+        </md-select>
+      </md-input-container>
 
-    <!-- Button -->
-    <md-button
-      class="md-icon-button"
-      aria-label="clear age"
-      ng-click="$ctrl.age = '';"> 
-      <md-icon
-        class="clear-button"
-        md-font-icon="clear" 
-        aria="clear">
-        clear
-      </md-icon>
-    </md-button>
+      <!-- Button -->
+      <md-button
+        class="md-icon-button"
+        aria-label="clear age"
+        ng-click="$ctrl.age = '';"> 
+        <md-icon
+          class="clear-button"
+          md-font-icon="clear" 
+          aria="clear">
+          clear
+        </md-icon>
+      </md-button>
+    </div>
     <!-- End: Alter -->
   </div>
   
   <!-- Buttons -->
-  <div layout="row" layout-align="center center">
-    <!-- Request senden -->
-    <md-button        
-      class="md-raised md-primary"
-      aria-label="get data"
-      ng-click="$ctrl.getData();">
-      Senden          
-    </md-button>
+  <div layout="row" layout-xs="column"
+       layout-align="center center">
 
-    <!-- Daten löschen -->
-    <md-button        
-      class="md-raised md-accent"
-      aria-label="get data"
-      ng-click="$ctrl.clearAll(withoutFav);">
-      Löschen         
-    </md-button>
+    <!-- Buttons -->
+    <div layout="row" layout-align="center center">
+      <!-- Request senden -->
+      <md-button        
+        class="md-raised md-primary"
+        aria-label="get data"
+        ng-click="$ctrl.getData();">
+        Senden          
+      </md-button>
 
-    <!-- Daten löschen ohne Favoriten -->
-    <md-checkbox 
-      class="md-secondary add-top-margin-20 add-left-margin-10" 
-      aria-label="without fav"
-      ng-model="withoutFav">
-      Löschen ohne Favoriten
-    </md-checkbox>
+      <!-- Daten löschen -->
+      <md-button        
+        class="md-raised md-accent"
+        aria-label="get data"
+        ng-click="$ctrl.clearAll(withoutFav);">
+        Löschen         
+      </md-button>
+    </div>
+
+    <!-- Checkbox -->
+    <div layout="row" layout-align="center center">
+      <!-- Daten löschen ohne Favoriten -->
+      <md-checkbox 
+        class="md-secondary add-top-margin-20 add-left-margin-10" 
+        aria-label="without fav"
+        ng-model="withoutFav">
+        Löschen ohne Favoriten
+      </md-checkbox>
+    </div>
+
   </div>
 
 </div>

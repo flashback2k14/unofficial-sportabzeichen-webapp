@@ -33,6 +33,10 @@ md-option:focus {
   margin-top: 20px;
 }
 
+.add-bottom-margin-20 {
+  margin-bottom: 20px;
+}
+
 .no-items {
   height: 150px;
 }
