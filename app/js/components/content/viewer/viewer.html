@@ -1,0 +1,91 @@
+<div layout="row" layout-md="row" 
+     layout-sm="column" layout-xs="column"
+     layout-align="space-between"
+     class="add-top-margin-20 add-bottom-margin-20">
+
+  <!-- Left Panel -->
+  <div layout="column" flex-gt-sm="45" flex
+       class="md-whiteframe-z4 add-top-margin-20">
+
+    <!-- Data Header Area -->
+    <md-toolbar
+      layout="row" layout-align="center center"
+      class="md-whiteframe-z4">
+      <div>
+        <h1 class="md-headline">
+          Leistungstabelle
+        </h1>
+      </div>
+    </md-toolbar>
+
+    <!-- Data Content Area -->
+    <md-content 
+      class="add-top-margin-20">
+
+      <!-- no items -->
+      <div layout="row" layout-align="center center"
+           class="no-items md-headline"
+        ng-show="$ctrl.data.length === 0">
+        Keine Daten vorhanden!
+      </div>
+
+      <!-- Data List-->
+      <md-list flex>
+        <md-list-item 
+          class="md-3-line" noright
+          aria-label="data list item"
+          ng-click="selected = !selected; $ctrl.toggleItem(selected, item);"
+          ng-repeat="item in $ctrl.data">
+          
+          <dataitem-component item="item" selected="selected"></dataitem-component>
+
+          <md-divider ng-if="!$last"></md-divider>
+        </md-list-item>
+      </md-list>
+    </md-content>  
+  </div>
+
+  <!-- Right Panel -->
+  <div layout="column" flex-gt-sm="45" flex
+       class="md-whiteframe-z4 add-top-margin-20">
+
+    <!-- Data Header Area -->
+    <md-toolbar
+      layout="row" layout-align="center center"
+      class="md-whiteframe-z4">
+      <div>
+        <h1 class="md-headline">
+          Favoriten
+        </h1>
+      </div>
+    </md-toolbar>
+
+    <!-- Data Content Area -->
+    <md-content 
+      class="add-top-margin-20">
+
+      <!-- no items -->
+      <div 
+        class="no-items md-headline"
+        layout="row" layout-align="center center"
+        ng-show="$ctrl.favlist.length === 0">
+        Keine Daten vorhanden!
+      </div>
+
+      <!-- Data List-->
+      <md-list flex>
+        <md-list-item 
+          class="md-3-line" noright
+          aria-label="fav list item"
+          ng-click="$ctrl.removeItem(item);"
+          ng-repeat="item in $ctrl.favlist">
+          
+          <favitem-component item="item"></favitem-component>
+
+          <md-divider ng-if="!$last"></md-divider>
+        </md-list-item>
+      </md-list>
+    </md-content> 
+  </div>
+  
+</div>

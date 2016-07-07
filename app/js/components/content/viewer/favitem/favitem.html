@@ -1,0 +1,22 @@
+<div class="md-list-item-text">
+  <h4 aria-label="kategorie, uebung and zusatz">
+      {{ $ctrl.item.kategorie | uppercase }} - {{ $ctrl.item.uebung }} - {{ $ctrl.item.zusatz }}
+  </h4>
+  <h4 aria-label="alter">
+      Alter: {{ $ctrl.item.alt_von }} - {{ $ctrl.item.alt_bis }}
+  </h4>
+  <h4 aria-label="abzeichen">
+      Bronze: {{ $ctrl.item.abzeichen_bronze }} ; Silber: {{ $ctrl.item.abzeichen_silber }} ; Gold: {{ $ctrl.item.abzeichen_gold }}
+  </h4>
+  <h4 aria-label="einheit">
+      Einheit: {{ $ctrl.item.einheit }}
+  </h4>
+  <!--<md-button 
+    class="md-secondary" 
+    aria-label="remove from favlist">
+    <md-icon
+      aria-label="remove from favlist">
+      clear
+    </md-icon>
+  </md-button>-->
+</div>

@@ -31,13 +31,18 @@ gulp.task("_copy", function() {
     .pipe(gulp.dest("dist/bower_components"));
 });
 
+gulp.task("_copyHtml", function() {
+  return gulp.src("./app/js/**/*.html")
+    .pipe(gulp.dest("dist/js"));
+});
+
 // clean build folder
 gulp.task("clean", function() {
   return del.sync(["dist", ".publish"]);
 });
 
 // minify HTML, CSS and JS
-gulp.task("minify", ["clean", "_copy"], function() {
+gulp.task("minify", ["clean", "_copy", "_copyHtml"], function() {
   return gulp.src("./app/*.html")
     .pipe(useRef())
     .pipe(gIf("*.css", cssNano()))
@@ -72,6 +77,7 @@ gulp.task("serve", ["minify"], function() {
 // watch changes on HTML, CSS and JS
 gulp.task("watch", ["_browserSync"], function() {
   gulp.watch("./app/*.html", browserSync.reload);
+  gulp.watch("./app/js/**/*.html", browserSync.reload);
   gulp.watch("./app/js/**/*.js", browserSync.reload);
   gulp.watch("./app/styles/**/*.css", browserSync.reload);
 });

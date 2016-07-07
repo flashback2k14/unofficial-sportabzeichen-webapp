@@ -1,0 +1,23 @@
+<md-content class="md-padding" flex>   
+
+  <!-- Top -->
+  <collector-component
+    categories="$ctrl.categories"
+    genders="$ctrl.genders"
+    ages="$ctrl.ages"
+    data="$ctrl.data"
+    favlist="$ctrl.favlist">
+  </collector-component>
+  
+  <!-- Middle -->
+  <viewer-component
+    data="$ctrl.data"
+    favlist="$ctrl.favlist">
+  </viewer-component>
+  
+  <!-- Notification Toast -->
+  <div layout-fill id="toast-container">
+    <md-content></md-content>
+  </div>
+
+</md-content>
