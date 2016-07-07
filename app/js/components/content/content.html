@@ -1,29 +1,26 @@
-<div layout="row" flex>
-  <!-- Content -->
-  <md-content id="content" flex>   
+<md-content id="content" flex>   
 
-    <div class="md-padding" flex>
+  <div class="md-padding" flex>
 
-      <!-- Top -->
-      <collector-component
-        categories="$ctrl.categories"
-        genders="$ctrl.genders"
-        ages="$ctrl.ages"
-        data="$ctrl.data"
-        favlist="$ctrl.favlist">
-      </collector-component>
-      
-      <!-- Middle -->
-      <viewer-component
-        data="$ctrl.data"
-        favlist="$ctrl.favlist">
-      </viewer-component>
-      
-      <!-- Notification Toast -->
-      <div layout-fill id="toast-container">
-        <md-content></md-content>
-      </div>
-
+    <!-- Top -->
+    <collector-component
+      categories="$ctrl.categories"
+      genders="$ctrl.genders"
+      ages="$ctrl.ages"
+      data="$ctrl.data"
+      favlist="$ctrl.favlist">
+    </collector-component>
+    
+    <!-- Middle -->
+    <viewer-component
+      data="$ctrl.data"
+      favlist="$ctrl.favlist">
+    </viewer-component>
+    
+    <!-- Notification Toast -->
+    <div layout-fill id="toast-container">
+      <md-content></md-content>
     </div>
-  </md-content>
-</div>
+
+  </div>
+</md-content>

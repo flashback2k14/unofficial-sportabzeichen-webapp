@@ -1,9 +1,15 @@
-<!-- Header Area -->
-<header-component></header-component>
+<div layout="column">
+  <!-- Header Area -->
+  <header-component 
+    layout="row">
+  </header-component>
 
-<!-- Content Area -->
-<content-component
-  categories="$ctrl.categories"
-  genders="$ctrl.genders"
-  ages="$ctrl.ages">
-</content-component>
+  <!-- Content Area -->
+  <content-component
+    layout="row" 
+    layout-align="center center"
+    categories="$ctrl.categories"
+    genders="$ctrl.genders"
+    ages="$ctrl.ages">
+  </content-component>
+</div>
