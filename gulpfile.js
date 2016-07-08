@@ -5,7 +5,7 @@ var cssNano = require("gulp-cssnano");
 var del = require("del");
 var gIf = require("gulp-if");
 var ghPages = require("gulp-gh-pages");
-var htmlMin = require("gulp-htmlmin");
+var htmlMinifier = require("gulp-html-minifier");
 var useRef = require("gulp-useref");
 var uglify = require("gulp-uglify");
 var ngAnnotate = require("gulp-ng-annotate");
@@ -33,6 +33,11 @@ gulp.task("_copy", function() {
 
 gulp.task("_copyHtml", function() {
   return gulp.src("./app/js/**/*.html")
+    .pipe(gIf("*.html", htmlMinifier({
+      collapseWhitespace: true, 
+      removeComments: true,
+      removeRedundantAttributes: true 
+    })))
     .pipe(gulp.dest("dist/js"));
 });
 
@@ -50,9 +55,10 @@ gulp.task("minify", ["clean", "_copy", "_copyHtml"], function() {
     .pipe(gIf("*.js", uglify({
        preserveComments: 'license'
     })))
-    .pipe(gIf("*.html", htmlMin({
+    .pipe(gIf("*.html", htmlMinifier({
+      collapseWhitespace: true, 
       removeComments: true,
-      removeRedundantAttributes: true
+      removeRedundantAttributes: true 
     })))
     .pipe(gulp.dest("dist"));
 });
