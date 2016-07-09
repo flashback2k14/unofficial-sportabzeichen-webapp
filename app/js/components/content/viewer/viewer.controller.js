@@ -1,8 +1,6 @@
 function ViewerController() {
   // save context
   var ctrl = this;
-
-  ctrl.removed = false;
   
   // toggle item to / from fav list
   ctrl.toggleItem = function(selected, item) {
